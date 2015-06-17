@@ -23,7 +23,6 @@ cdata<-read.csv("coef_data2.csv")
 hist_acten <-ggplot(cdata, aes(x=Activation_energy, fill=Order))
 act_energies<-hist_acten + geom_bar()
 
-
 #start with simple model (no random effects)
 
 lm0<-lm(ln_rate~X1_kT,data=mdata)
@@ -34,6 +33,8 @@ pur_data<-subset(mdata,Culture="Pure")
 
 lm1<-lme(ln_rate~X1_kT,data=pur_data,random=~1|Dataset)
 
+plot(lm1,form=resid(.,type="p")~fitted(.)|Order,abline=0)
 
+lm2<-lme(ln_rate~X1_kT,data=pur_data,random=~X1_kT|Dataset)
 
-
+plot(lm2,form=resid(.,type="p")~fitted(.)|Order,abline=0)
