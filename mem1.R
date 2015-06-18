@@ -38,3 +38,7 @@ plot(lm1,form=resid(.,type="p")~fitted(.)|Order,abline=0)
 lm2<-lme(ln_rate~X1_kT,data=pur_data,random=~X1_kT|Dataset)
 
 plot(lm2,form=resid(.,type="p")~fitted(.)|Order,abline=0)
+
+#plot of each dataset with standard errors, coloured by Order
+
+qplot(X1_kT,ln_rate,data=mdata,color=Order)+ geom_smooth(aes(group=Dataset), method="lm")
