@@ -8,8 +8,6 @@ pur_data<-subset(mdata,Culture="Pure")
 mdata2<-pur_data[,c("Dataset","X1_kT","ln_rate")]
 
 
-
-
 acten<-groupedData(ln_rate~X1_kT|Dataset, mdata2, order.groups=FALSE)
 test<-lmList(ln_rate~X1_kT|Dataset, data=mdata2, na.action=na.omit)
 pairs(test, id=0.05)
@@ -41,4 +39,16 @@ plot(lm2,form=resid(.,type="p")~fitted(.)|Order,abline=0)
 
 #plot of each dataset with standard errors, coloured by Order
 
-qplot(X1_kT,ln_rate,data=mdata,color=Order)+ geom_smooth(aes(group=Dataset), method="lm")
+library(lme4)
+#lets try running some tests ony using pure culture data and specific growth rates
+
+subdata<-subset(mdata,Culture=="Pure")
+subdata<-subset(subdata,Rate_type=="Specific growth")
+
+subdata2<-subdata[,c("Dataset","X1_kT","ln_rate")]
+
+acten_subdata<-groupedData(ln_rate~X1_kT|Dataset, subdata2, order.groups=FALSE)
+test_subdata<-lmList(ln_rate~X1_kT|Dataset, data=subdata2, na.action=na.omit)
+pairs(test_subdata, id=0.05)
+
+hist(coef(test_subdata)[,2], breaks=50, xlab='slope', main = 'Slopes from lmList individual model fitting')
