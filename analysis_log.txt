@@ -1,0 +1,13 @@
+16/04/18
+
+Nicole: 
+
+I went through analysis_data.csv and checked out studies.  >30 have >4 data points (as suggested by Pawar et al.).  I know this
+is a drop from the 80 we have now but I think going through JSTOR we'll find a lot more studies (based on my experience with the other
+meta-analysis I've been working on).  I also think we should explicitly
+search for cellulolytic datasets.  I think we should consider more deeply how we sort studies.  At the very least I wonder if we should
+split growth rate data and production rate data.  I haven't been through the code yet so I'm not sure what we've done to date.
+
+I think my next goal is to encode the criteria in Pawar 2016 and use it as a filter
+to see which studies meet this higher bar.  Whether or not we stick with excluding other studies is up for debate, but I think
+it would be good to take a pass at it this way to see if the results hold.
